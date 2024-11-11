@@ -1,0 +1,55 @@
+{% extends "template.html" %}
+{% block content %}
+<div class="pagetitle text-center">
+    <h1>LISTADO DE VALIDACIÓN</h1>
+</div>
+
+<!-- Bloque para mostrar mensajes de flash -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+  <div class="alert alert-warning">
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+  </div>
+{% endif %}
+{% endwith %}
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Valida tu código Html!</h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered text-center mx-auto" style="max-width: 1000px;">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Codigo Html</th>
+                                    <th>Es válido?</th>
+                                    <th>Operación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in lista_validador %}
+                                <tr>
+                                    <td>{{ item.id }}</td>
+                                    <td>{{ item.htmlCode }}</td>
+                                    <td>{{ 'Sí' if item.isValid else 'No' }}</td>
+                                    <td>
+                                        <form action="/admin/validador/delete/{{ item.id }}" method="post" style="display:inline;">
+                                          <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta familia?');">ELIMINAR</button>
+                                      </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

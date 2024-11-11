@@ -1,0 +1,1 @@
+[{"id":1,"htmlCode":"<html><head>Holaa Mundooo</head></html>","isValid":true},{"id":2,"htmlCode":"<html><head>Chao Mundooo</html></head>","isValid":false},{"id":3,"htmlCode":"<html>Holaaa</html>","isValid":true},{"id":4,"htmlCode":"<html>Holaaa<html>","isValid":false}]
